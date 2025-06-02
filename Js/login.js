@@ -1,7 +1,5 @@
-// Troque pela URL base correta da sua API
-const API_BASE_URL = 'https://SEU_BACKEND_URL'; // Exemplo: https://api.umfg.com
+const API_BASE_URL = 'https://umfgcloud-autenticacao-service-7e27ead80532.herokuapp.com';
 
-// Alterna o layout entre login e cadastro
 var body = document.querySelector("body");
 var signInButton = document.querySelector("#signIn");
 var signUpButton = document.querySelector("#signUp");
@@ -18,9 +16,6 @@ signUpButton.addEventListener("click", function () {
     body.className = "sign-up";
 });
 
-// =========================
-// Cadastro de usuário
-// =========================
 document.querySelector('#register').addEventListener('click', async function (e) {
     e.preventDefault();
 
@@ -49,7 +44,6 @@ document.querySelector('#register').addEventListener('click', async function (e)
 
         if (response.ok) {
             alert('Cadastro realizado com sucesso!');
-            // Redireciona para a tela de boas-vindas sem token (cadastro não retorna token)
             window.location.href = `welcome.html?email=${encodeURIComponent(email)}&token=--&expira=--`;
         } else {
             alert(resultText);
@@ -61,9 +55,6 @@ document.querySelector('#register').addEventListener('click', async function (e)
     }
 });
 
-// =========================
-// Login de usuário
-// =========================
 document.querySelector('#access').addEventListener('click', async function (e) {
     e.preventDefault();
 
