@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo(a)!</title>
+    <link rel="stylesheet" href="Css/welcome-styles.css"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+</head>
+<body>
+    <div class="welcome-container">
+        <h1 class="welcome-title">Bem-vindo(a)!</h1>
+        <p class="welcome-message" id="welcomeMessage">Carregando informações...</p>
+        <button id="logoutButton" class="welcome-button">Sair</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            const token = urlParams.get('token'); 
+            const expira = urlParams.get('expira');
+            const welcomeMessageElement = document.getElementById('welcomeMessage');
+            const logoutButton = document.getElementById('logoutButton');
+
+            if (email) {
+                let formattedExpira = 'indefinida';
+                if (expira && expira !== '--') {
+                    try {
+                        const dateObj = new Date(expira);
+                        if (!isNaN(dateObj.getTime())) {
+                            formattedExpira = dateObj.toLocaleString('pt-BR', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            });
+                        } else {
+                            formattedExpira = expira;
+                        }
+                    } catch (e) {
+                        formattedExpira = expira;
+                    }
+                }
+
+                welcomeMessageElement.textContent = `Seja bem-vindo(a), ${decodeURIComponent(email)}! Seu token expira em ${formattedExpira}.`;
+            } else {
+                welcomeMessageElement.textContent = 'Ops! Não foi possível carregar suas informações. Por favor, tente fazer login novamente.';
+            }
+
+            logoutButton.addEventListener('click', function() {
+                // localStorage.removeItem('authToken');
+                // localStorage.removeItem('userEmail');
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>
