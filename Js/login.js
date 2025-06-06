@@ -79,7 +79,7 @@ document.querySelector('#access').addEventListener('click', async function (e) {
             alert('Login realizado com sucesso!');
             const token = result.token;
             const expira = result.dataExpiracao;
-            window.location.href = `NovaPagina.html?email=<span class="math-inline">\{encodeURIComponent\(email\)\}&token\=</span>{encodeURIComponent(token)}&expira=${encodeURIComponent(expira)}`;
+            window.location.href = `NovaPagina.html?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}&expira=${encodeURIComponent(expira)}`;
         } else {
             const errorText = await response.text();
             alert(errorText);
