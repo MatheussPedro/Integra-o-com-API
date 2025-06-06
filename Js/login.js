@@ -90,3 +90,30 @@ document.querySelector('#access').addEventListener('click', async function (e) {
         alert('Erro ao conectar com o servidor.');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const signInBtn = document.getElementById('signIn');
+    const signUpBtn = document.getElementById('signUp');
+    const signInPanel = document.querySelector('.sign-in-panel');
+    const signUpPanel = document.querySelector('.sign-up-panel');
+
+    function showPanel(panel) {
+        if (panel === 'signIn') {
+            signInPanel.classList.add('active');
+            signUpPanel.classList.remove('active');
+            signInBtn.classList.add('active');
+            signUpBtn.classList.remove('active');
+        } else {
+            signUpPanel.classList.add('active');
+            signInPanel.classList.remove('active');
+            signUpBtn.classList.add('active');
+            signInBtn.classList.remove('active');
+        }
+    }
+
+    // Inicializa com login visível
+    showPanel('signIn');
+
+    signInBtn.addEventListener('click', () => showPanel('signIn'));
+    signUpBtn.addEventListener('click', () => showPanel('signUp'));
+});
