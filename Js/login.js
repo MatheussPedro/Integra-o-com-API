@@ -44,7 +44,9 @@ document.querySelector('#register').addEventListener('click', async function (e)
 
         if (response.ok) {
             alert('Cadastro realizado com sucesso!');
-            window.location.href = `NovaPagina.html?email=${encodeURIComponent(email)}&token=--&expira=--`;
+            document.querySelector('#register-email').value = '';
+            document.querySelector('#register-senha').value = '';
+            document.querySelector('#register-confirmar-senha').value = '';
         } else {
             alert(resultText);
         }
